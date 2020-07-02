@@ -1,0 +1,19 @@
+{
+    "name": "Augustojvs/framework",
+    "description": "Aplicação que utiliza a API do jsonplaceholder.",
+    "authors": [
+        {
+            "name": "Augusto",
+            "email": "augusto_jvs@hotmail.com",
+            "role": "developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "App"
+        }
+    },
+    "require": {
+        "php": "^7.1"
+    }
+}
