@@ -13,7 +13,6 @@ if (!empty($_POST["id"])) {
     echo alert("Este album não contem fotos.");
 }
 
-
 $sample_data = $api->getSpecificAlbum($albumId);
 
 // use get variable to paging number

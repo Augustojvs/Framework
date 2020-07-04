@@ -22,12 +22,12 @@ class Api {
             curl_close($ch);
             $this->callBack = json_decode($this->callBack, true);
             
-            return $this->callBack;
+            return $this->filter($this->callBack);
 
     }
 
-    public function getComments() {
-        $url = 'https://jsonplaceholder.typicode.com/comments';
+    public function getComments($id) {
+        $url = 'https://jsonplaceholder.typicode.com/posts/'.$id.'/comments';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -71,7 +71,7 @@ class Api {
         curl_close($ch);
         $this->callBack = json_decode($this->callBack, true);
 
-        return $this->callBack;
+        return $this->filter($this->callBack);
     }
 
     public function getSpecificAlbum($id) {
@@ -89,7 +89,7 @@ class Api {
         curl_close($ch);
         $this->callBack = json_decode($this->callBack, true);
 
-        return $this->callBack;
+        return $this->filter($this->callBack);
     }
 
     public function getPhotos() {

@@ -3,7 +3,18 @@ require '../config.php';
 require '../header.php';
 //api
 $api = new \App\Api();
+?>
 
+<form method="GET" action="<?= BASE ?>/views/albums" class="input-group mb-3">
+    <div class="input-group-prepend">
+        <button type="submit" class="btn btn-outline-info" id="pesquisar">Pesquisar</button>
+        <input type="hidden" id="category" name="category" value="title">
+    </div>
+    <input type="text" class="form-control" id="inputSearch" name="inputSearch" aria-label="Text input with segmented dropdown button" placeholder="Pesquise por um album">
+</form>
+<br><br>
+
+<?php 
 $sample_data = $api->getAlbums();
 
 // use get variable to paging number

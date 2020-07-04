@@ -68,3 +68,7 @@ footer{ height: 50px;
     border-right: 0;
     color: #555;
 }
+
+.comments{
+    text-align: right
+}
