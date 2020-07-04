@@ -75,7 +75,8 @@ class Api {
     }
 
     public function getSpecificAlbum($id) {
-        $url = 'https://jsonplaceholder.typicode.com/albums/' . $id;
+        
+        $url = 'https://jsonplaceholder.typicode.com/albums/' . $id . '/photos';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -108,19 +109,21 @@ class Api {
     }
 
     public function getUsers() {
+//        var_dump($category, $word);die;
         $url = 'https://jsonplaceholder.typicode.com/users';
-
+//        var_dump($url);die;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 0);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type": "application/json'));
 
         $this->callBack = trim(curl_exec($ch));
         curl_close($ch);
         $this->callBack = json_decode($this->callBack, true);
+//        var_dump($this->callBack);die;
 
-        return $this->callBack;
+        return $this->filter($this->callBack);
     }
 
     public function getUserSpecific($id) {
@@ -140,4 +143,14 @@ class Api {
         return $this->callBack;
     }
 
+    private function filter($arr) {
+      if (count($_GET) > 0 && $_GET['category'] && $_GET['inputSearch']) {
+        return array_filter($arr, function($position) {
+          return stristr($position[$_GET['category']], $_GET['inputSearch']);
+          // return $position[$_GET['category']] == $_GET['inputSearch'];
+        });
+      };
+
+      return $arr;
+    }
 }

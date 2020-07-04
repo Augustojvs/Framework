@@ -3,4 +3,4 @@
 // Require do caomposer
 require "vendor/autoload.php";
 
-if (!defined('BASE')) define('BASE', 'http://localhost/framework/');
+if (!defined('BASE')) define('BASE', 'http://localhost/framework');

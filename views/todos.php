@@ -31,9 +31,9 @@ $final = array_splice($sample_data, $offset, $limit); // splice them according t
                 <div class="card-body <?php echo $body ?>">
                     <h5 class="card-title"><?php echo $value["title"] ?></h5>
                     <p class="card-text"><?php if($value["completed"] == true){ ?> 
-                        <img src="<?= BASE ?>assets/img/success.png" title="Feito" alt="like" class="img-todos"> 
+                        <img src="<?= BASE ?>/assets/img/success.png" title="Feito" alt="like" class="img-todos"> 
                     <?php }else{ ?> 
-                        <img src="<?= BASE ?>assets/img/fail.png" title="A fazer" alt="deslike" class="img-todos">
+                        <img src="<?= BASE ?>/assets/img/fail.png" title="A fazer" alt="deslike" class="img-todos">
                     <?php } ?> 
                     </p>
                 </div>
