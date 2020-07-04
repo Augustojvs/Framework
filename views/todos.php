@@ -27,9 +27,9 @@ $final = array_splice($sample_data, $offset, $limit); // splice them according t
         ?>
         <div class="col-sm-4 cardTodos">
             <div class="card <?php echo $border ?> mb-3" style="max-width: 18rem;">
-                <div class="card-header"><?php echo $user["name"] ?></div>
+                <div class="card-header <?php echo $body ?>"><b><?php echo $user["name"] ?></b></div>
                 <div class="card-body <?php echo $body ?>">
-                    <h5 class="card-title"><?php echo $value["title"] ?></h5>
+                    <h6 class="card-title"><?php echo $value["title"] ?></h6>
                     <p class="card-text"><?php if($value["completed"] == true){ ?> 
                         <img src="<?= BASE ?>/assets/img/success.png" title="Feito" alt="like" class="img-todos"> 
                     <?php }else{ ?> 
@@ -45,12 +45,15 @@ $final = array_splice($sample_data, $offset, $limit); // splice them according t
 </div>
 
 <!-- print links -->
-<?php
-for ($x = 1; $x <= $total_pages;$x++) {
-?>
-<a href='todos?page=<?php echo $x; ?>'><?php echo $x; ?></a>
-<?php
-}
 
-require '../footer.php';
-?>
+<nav aria-label="...">
+    <ul class=" paginator ">
+        <?php for ($x = 1; $x <= $total_pages; $x++) { ?>
+            <li class="page-item"> 
+                <a href='todos?page=<?php echo $x; ?>'><?php echo $x; ?></a>
+            </li>
+        <?php } ?>
+    </ul>
+</nav>
+
+<?php require '../footer.php'; ?>

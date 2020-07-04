@@ -5,7 +5,16 @@ require '../header.php';
 $api = new \App\Api();
 
 
-$sample_data = $api->getSpecificAlbum($_POST['id']);
+if (!empty($_POST["id"])) {
+    $albumId = $_POST["id"];
+} else if (!empty($_GET["album"])) {
+    $albumId = $_GET["album"];
+} else {
+    echo alert("Este album não contem fotos.");
+}
+
+
+$sample_data = $api->getSpecificAlbum($albumId);
 
 // use get variable to paging number
 $page = !isset($_GET['page']) ? 1 : $_GET['page'];
@@ -35,10 +44,18 @@ $final = array_splice($sample_data, $offset, $limit); // splice them according t
 </div>
 
 <!-- print links -->
-<?php for ($x = 1; $x <= $total_pages; $x++) { ?>
-    <a href='photos?page=<?php echo $x; ?>'><?php echo $x; ?></a>
-    <?php
-}
 
+
+<nav aria-label="...">
+    <ul class=" paginator ">
+        <?php for ($x = 1; $x <= $total_pages; $x++) { ?>
+            <li class="page-item"> 
+                <a href='photos?album=<?= $albumId ?>&page=<?php echo $x; ?>'><?php echo $x; ?></a>
+            </li>
+        <?php } ?>
+    </ul>
+</nav>
+
+<?php
 require '../footer.php';
 ?>

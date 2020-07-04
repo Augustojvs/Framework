@@ -31,11 +31,15 @@ foreach ($final as $key => $value) {
     <br>
 <?php } ?>
 
-<!-- print links -->
-<?php for ($x = 1; $x <= $total_pages; $x++) { ?>
-    <a href='postagens?page=<?php echo $x; ?>'><?php echo $x; ?></a>
-<?php
-}
+<nav aria-label="...">
+    <ul class=" paginator ">
+        <?php for ($x = 1; $x <= $total_pages; $x++) { ?>
+            <li class="page-item"> 
+                <a href='postagens?page=<?php echo $x; ?>'><?php echo $x; ?></a>
+            </li>
+        <?php } ?>
+    </ul>
+</nav>
 
-require '../footer.php';
+<?php require '../footer.php';
 ?>

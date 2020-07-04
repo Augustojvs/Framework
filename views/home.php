@@ -33,7 +33,15 @@ $api = new \App\Api();
     <tbody>
 <?php
 
-$data = $api->getUsers();
+$sample_data = $api->getUsers();
+
+// use get variable to paging number
+$page = !isset($_GET['page']) ? 1 : $_GET['page'];
+$limit = 5; // five rows per page
+$offset = ($page - 1) * $limit; // offset
+$total_items = count($sample_data); // total items
+$total_pages = ceil($total_items / $limit);
+$data = array_splice($sample_data, $offset, $limit); // splice them according to offset and limit
 
 foreach ($data as $users) {
     $lugar = $users["address"]["geo"]["lat"] . ',' . $users["address"]["geo"]["lng"];
@@ -52,33 +60,14 @@ foreach ($data as $users) {
     </tbody>
 </table>
 
-<script>
-    /*  $('#pesquisar').on('click', function(){
-     console.log('aqui');
-     if($('#inputSearch').val() !== ""){
-     
-     var cat = $('#category :selected').val();
-     var input =  $('#inputSearch').val();
-     
-     $.ajax({
-     url: 'process.php',
-     type: "POST",
-     data: {
-     category: cat,
-     word: input,
-     },
-     success: function (response) {
-     $('#msgAviso').html(`<label class="text-success">${response.mensagem}</label>`);
-     },
-     error: function({responseJSON}) {
-     $('#msgAviso').html('<label class="text-danger">Falha ao enviar mensagem.</label>');
-     },
-     complete: function () {
-     $('#testaEnvio').modal('hide');
-     }
-     });
-     }
-     });
-     */
-</script>
+<nav aria-label="...">
+    <ul class=" paginator ">
+        <?php for ($x = 1; $x <= $total_pages; $x++) { ?>
+            <li class="page-item"> 
+                <a href='?page=<?php echo $x; ?>'><?php echo $x; ?></a>
+            </li>
+        <?php } ?>
+    </ul>
+</nav>
+
 

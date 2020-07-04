@@ -144,7 +144,7 @@ class Api {
     }
 
     private function filter($arr) {
-      if (count($_GET) > 0 && $_GET['category'] && $_GET['inputSearch']) {
+      if (count($_GET) > 0 && isset($_GET['category']) && $_GET['inputSearch']) {
         return array_filter($arr, function($position) {
           return stristr($position[$_GET['category']], $_GET['inputSearch']);
           // return $position[$_GET['category']] == $_GET['inputSearch'];
