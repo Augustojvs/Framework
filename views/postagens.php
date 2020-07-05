@@ -25,7 +25,7 @@ $sample_data = $api->getPosts();
 
 // use get variable to paging number
 $page = !isset($_GET['page']) ? 1 : $_GET['page'];
-$limit = 5; // five rows per page
+$limit = isset($_GET['userId']) ? 30 : 5; // five rows per page
 $offset = ($page - 1) * $limit; // offset
 $total_items = count($sample_data); // total items
 $total_pages = ceil($total_items / $limit);
@@ -64,7 +64,9 @@ foreach ($final as $key => $value) {
         </div>
     </div>
     <br>
-<?php } ?>
+<?php } 
+if(!isset($_GET['userId'])){
+?>
 
 <nav aria-label="...">
     <ul class=" paginator ">
@@ -76,5 +78,5 @@ foreach ($final as $key => $value) {
     </ul>
 </nav>
 
-<?php require '../footer.php';
+<?php } require '../footer.php';
 ?>

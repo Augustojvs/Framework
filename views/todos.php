@@ -8,7 +8,7 @@ $sample_data = $api->getTodos();
 
 // use get variable to paging number
 $page = !isset($_GET['page']) ? 1 : $_GET['page'];
-$limit = 9; // five rows per page
+$limit = isset($_GET['userId']) ? 30 : 9; // five rows per page
 $offset = ($page - 1) * $limit; // offset
 $total_items = count($sample_data); // total items
 $total_pages = ceil($total_items / $limit);
@@ -45,7 +45,7 @@ $final = array_splice($sample_data, $offset, $limit); // splice them according t
 </div>
 
 <!-- print links -->
-
+<?php if(!isset($_GET['userId'])){ ?>
 <nav aria-label="...">
     <ul class=" paginator ">
         <?php for ($x = 1; $x <= $total_pages; $x++) { ?>
@@ -56,4 +56,4 @@ $final = array_splice($sample_data, $offset, $limit); // splice them according t
     </ul>
 </nav>
 
-<?php require '../footer.php'; ?>
+<?php } require '../footer.php'; ?>
