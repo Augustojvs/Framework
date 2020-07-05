@@ -10,19 +10,24 @@ namespace App;
 class Api {
 
     public function getPosts() {
+        
+        if(isset($_GET['userId'])){
+            $url = 'https://jsonplaceholder.typicode.com/users/'.$_GET['userId'].'/posts';
+        }else{
             $url = 'https://jsonplaceholder.typicode.com/posts';
+        }
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 0);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type": "application/json'));
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type": "application/json'));
 
-            $this->callBack = trim(curl_exec($ch));
-            curl_close($ch);
-            $this->callBack = json_decode($this->callBack, true);
-            
-            return $this->filter($this->callBack);
+        $this->callBack = trim(curl_exec($ch));
+        curl_close($ch);
+        $this->callBack = json_decode($this->callBack, true);
+
+        return $this->filter($this->callBack);
 
     }
 
@@ -43,7 +48,12 @@ class Api {
     }
 
     public function getTodos() {
-        $url = 'https://jsonplaceholder.typicode.com/todos';
+        
+        if(isset($_GET['userId'])){
+            $url = 'https://jsonplaceholder.typicode.com/users/'.$_GET['userId'].'/todos';
+        }else{
+            $url = 'https://jsonplaceholder.typicode.com/todos';
+        }
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -59,7 +69,12 @@ class Api {
     }
 
     public function getAlbums() {
-        $url = 'https://jsonplaceholder.typicode.com/albums';
+        
+        if(isset($_GET['userId'])){
+            $url = 'https://jsonplaceholder.typicode.com/users/'.$_GET['userId'].'/albums';
+        }else{
+            $url = 'https://jsonplaceholder.typicode.com/albums';
+        }
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

@@ -28,6 +28,9 @@ $api = new \App\Api();
             <th>Telefone</th>
             <th>Compania</th>
             <th>Endereço</th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -48,14 +51,17 @@ foreach ($data as $users) {
 
     $maps = "https://www.google.com.br/maps/@" . $lugar . ",15z?hl=pt-BR&authuser=0";
     ?>
-            <tr>
-                <td><?php echo $users["id"] ?></td>
-                <td><?php echo $users["name"] ?></td>
-                <td><?php echo $users["email"] ?></td>
-                <td><?php echo $users["phone"] ?></td>
-                <td><?php echo $users["company"]["name"] ?></td>
-                <td><a href="<?php echo $maps ?>" target="_blank" rel="noopener noreferrer">ver no mapa</a></td>
-            </tr>
+        <tr>
+            <td><?php echo $users["id"] ?></td>
+            <td><?php echo $users["name"] ?></td>
+            <td><?php echo $users["email"] ?></td>
+            <td><?php echo $users["phone"] ?></td>
+            <td><?php echo $users["company"]["name"] ?></td>
+            <td><a href="<?php echo $maps ?>" target="_blank" rel="noopener noreferrer"><i class="fa fa-map-marker" aria-hidden="true"> Ver no mapa</i></a></td>
+            <td><a href="views/postagens?userId=<?php echo $users["id"] ?>" rel="noopener noreferrer"><i class="fa fa-comments-o" aria-hidden="true"></i></a></td>
+            <td><a href="views/albums?userId=<?php echo $users["id"] ?>" rel="noopener noreferrer"><i class="fa fa-picture-o" aria-hidden="true"></i></a></td>
+            <td><a href="views/todos?userId=<?php echo $users["id"] ?>" rel="noopener noreferrer"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+        </tr>
 <?php } ?>
     </tbody>
 </table>

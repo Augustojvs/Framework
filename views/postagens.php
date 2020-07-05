@@ -4,6 +4,8 @@ require '../header.php';
 
 $api = new \App\Api();
 
+
+
 ?>
 
 <form method="GET" action="<?= BASE ?>/views/postagens" class="input-group mb-3">
@@ -44,7 +46,7 @@ foreach ($final as $key => $value) {
                 <br>
                 <div class="list-group">
                     <?php foreach ($comments as $comment){
-                        $input = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+                        $input = range (0, 10);
                         $rand_keys = array_rand($input);
                         $days = $input[$rand_keys]." days ago";
                     ?>

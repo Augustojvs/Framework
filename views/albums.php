@@ -32,17 +32,17 @@ $final = array_splice($sample_data, $offset, $limit); // splice them according t
             foreach ($final as $key => $value) {
                 $user = $api->getUserSpecific($value["userId"]);
                 ?>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $value["title"] ?></h5>
-                                <p class="card-text"><?php echo $user["name"] ?></p>
-                                <input type="hidden" name="id" name="id" value="<?=$value["id"]?>" >
-                                <button type="submit" class="btn btn-info">Ver Fotos</button>
-                            </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $value["title"] ?></h5>
+                            <p class="card-text"><?php echo $user["name"] ?></p>
+                            <input type="hidden" name="id" name="id" value="<?=$value["id"]?>" >
+                            <button type="submit" class="btn btn-info">Ver Fotos</button>
                         </div>
-                        <br><br>
-                    </div> 
+                    </div>
+                    <br><br>
+                </div> 
             <?php } ?>
         </div>
     </div>
